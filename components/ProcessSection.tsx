@@ -63,6 +63,12 @@ export const ProcessSection = () => {
                         }}
                         nextButtonText="Next Step"
                         backButtonText="Previous"
+                        renderStepIndicator={(step: number, isActive: boolean) => (
+                            <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all ${isActive ? 'bg-[#5ab8b4] text-white shadow-lg' : 'bg-gray-200 text-gray-600'
+                                }`}>
+                                {step}
+                            </div>
+                        )}
                     >
                         {steps.map((step, index) => (
                             <Step key={index}>
