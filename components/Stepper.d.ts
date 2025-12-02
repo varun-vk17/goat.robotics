@@ -1,4 +1,10 @@
-import { ReactNode } from 'react';
+import { ReactNode, ReactElement } from 'react';
+
+interface RenderStepIndicatorProps {
+    step: number;
+    currentStep: number;
+    onStepClick: (step: number) => void;
+}
 
 interface StepperProps {
     children: ReactNode;
@@ -9,14 +15,16 @@ interface StepperProps {
     stepContainerClassName?: string;
     contentClassName?: string;
     footerClassName?: string;
-    backButtonProps?: any;
-    nextButtonProps?: any;
+    backButtonProps?: Record<string, any>;
+    nextButtonProps?: Record<string, any>;
     backButtonText?: string;
     nextButtonText?: string;
     disableStepIndicators?: boolean;
-    renderStepIndicator?: (props: { step: number; currentStep: number; onStepClick: (step: number) => void }) => ReactNode;
-    [key: string]: any;
+    renderStepIndicator?: (props: RenderStepIndicatorProps) => ReactElement;
 }
 
-export default function Stepper(props: StepperProps): JSX.Element;
-export function Step({ children }: { children: ReactNode }): JSX.Element;
+declare function Stepper(props: StepperProps): ReactElement;
+declare function Step(props: { children: ReactNode }): ReactElement;
+
+export default Stepper;
+export { Step };
