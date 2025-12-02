@@ -62,7 +62,7 @@ const item = {
     scale: 1,
     y: 0,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 100,
       damping: 15,
     },
@@ -75,7 +75,7 @@ const starVariants = {
     scale: 1,
     rotate: 0,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 200,
       damping: 15,
       delay: i * 0.1,

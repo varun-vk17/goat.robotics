@@ -18,9 +18,13 @@ interface StepperProps {
   backButtonText?: string;
   nextButtonText?: string;
   disableStepIndicators?: boolean;
-  // 👇 This '?' is what fixes your build error
-  renderStepIndicator?: (props: any) => ReactNode; // ✅ The ? makes it optional
-  [key: string]: any;  // Allow other props (...rest)
+  // The '?' makes it optional, and we define the expected function signature
+  renderStepIndicator?: (props: {
+    step: number;
+    currentStep: number;
+    onStepClick: (step: number) => void;
+  }) => ReactNode;
+  [key: string]: any; // Allow other props (...rest)
 }
 
 export default function Stepper({
@@ -88,7 +92,8 @@ export default function Stepper({
                   renderStepIndicator({
                     step: stepNumber,
                     currentStep,
-                    onStepClick: (clicked) => {
+                    // 👇 FIXED: Added ': number' type annotation here
+                    onStepClick: (clicked: number) => {
                       setDirection(clicked > currentStep ? 1 : -1);
                       updateStep(clicked);
                     }
@@ -98,7 +103,8 @@ export default function Stepper({
                     step={stepNumber}
                     disableStepIndicators={disableStepIndicators}
                     currentStep={currentStep}
-                    onClickStep={(clicked) => {
+                    // 👇 FIXED: Added ': number' type annotation here as well
+                    onClickStep={(clicked: number) => {
                       setDirection(clicked > currentStep ? 1 : -1);
                       updateStep(clicked);
                     }}
