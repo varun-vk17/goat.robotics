@@ -19,12 +19,8 @@ interface StepperProps {
   nextButtonText?: string;
   disableStepIndicators?: boolean;
   // 👇 This '?' is what fixes your build error
-  renderStepIndicator?: (props: {
-    step: number;
-    currentStep: number;
-    onStepClick: (step: number) => void;
-  }) => ReactNode;
-  [key: string]: any; // Allow other props (...rest)
+  renderStepIndicator?: (props: any) => ReactNode; // ✅ The ? makes it optional
+  [key: string]: any;  // Allow other props (...rest)
 }
 
 export default function Stepper({
@@ -183,7 +179,7 @@ interface SlideTransitionProps {
 }
 
 function SlideTransition({ children, direction, onHeightReady }: SlideTransitionProps) {
-  const containerRef = useRef < HTMLDivElement > (null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     if (containerRef.current) onHeightReady(containerRef.current.offsetHeight);
