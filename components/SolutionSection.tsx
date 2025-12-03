@@ -69,7 +69,7 @@ export const SolutionSection = () => {
 
                     {/* Right: Image */}
                     <div className="order-1 lg:order-2 relative">
-                        <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform hover:scale-[1.02] transition-transform duration-500 h-[500px]">
+                        <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform hover:scale-[1.02] transition-transform duration-500 h-[300px] lg:h-[500px]">
                             <Image
                                 src="/sol.png"
                                 alt="AMR robots in factory"

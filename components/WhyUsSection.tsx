@@ -80,7 +80,7 @@ export const WhyUsSection = () => {
                     </div>
 
                     {/* Right: Accordion */}
-                    <div className="flex flex-row gap-2 h-[500px]">
+                    <div className="flex flex-col lg:flex-row gap-2 h-auto lg:h-[500px]">
                         {features.map((feature, index) => {
                             const isActive = activeIndex === index;
 
@@ -91,9 +91,10 @@ export const WhyUsSection = () => {
                                         "relative rounded-3xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] cursor-pointer",
                                         "bg-gradient-to-br from-gray-900 to-black",
                                         "border-2",
+                                        "w-full lg:w-auto", // Full width on mobile
                                         isActive
-                                            ? "border-[#5ab8b4] shadow-xl shadow-[#5ab8b4]/20 flex-[3]"
-                                            : "border-gray-800 hover:border-gray-700 flex-[0.5] hover:flex-[0.75]"
+                                            ? "border-[#5ab8b4] shadow-xl shadow-[#5ab8b4]/20 h-[400px] lg:h-auto lg:flex-[3]"
+                                            : "border-gray-800 hover:border-gray-700 h-[80px] lg:h-auto lg:flex-[0.5] lg:hover:flex-[0.75]"
                                     )}
                                     onClick={() => setActiveIndex(index)}
                                 >
@@ -105,6 +106,22 @@ export const WhyUsSection = () => {
                                         {index + 1}
                                     </div>
 
+                                    {/* Vertical Title (Inactive State) */}
+                                    {!isActive && (
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <h3 className="text-white font-bold text-lg font-[family-name:var(--font-plus-jakarta-sans)] whitespace-nowrap lg:[writing-mode:vertical-rl] lg:rotate-180"
+                                                style={{
+                                                    // writingMode: 'vertical-rl', // Moved to class via arbitrary variant or just conditional style if needed, but Tailwind arbitrary variant is cleaner if supported or just media query style
+                                                    // textOrientation: 'mixed',
+                                                    // transform: 'rotate(180deg)'
+                                                }}
+                                            >
+                                                {feature.title}
+                                            </h3>
+                                        </div>
+                                    )}
+
+                                    {/* Expanded Content (Active State) */}
                                     <div className={cn(
                                         "p-8 transition-all duration-500 h-full flex flex-col",
                                         isActive ? "opacity-100 delay-200" : "opacity-0 invisible absolute inset-0"

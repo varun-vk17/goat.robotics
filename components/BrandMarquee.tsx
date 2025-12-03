@@ -23,21 +23,21 @@ export const BrandMarquee = () => {
 
                 {/* Clean marquee with gradient fades */}
                 <div className="relative">
-                    <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
-                    <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
+                    <div className="absolute left-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
+                    <div className="absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
 
                     <Marquee pauseOnHover className="[--duration:30s]">
                         {brands.map((brand) => (
                             <div
                                 key={brand.name}
-                                className="mx-12 flex items-center justify-center"
+                                className="mx-6 md:mx-12 flex items-center justify-center"
                             >
                                 <Image
                                     src={brand.logo}
                                     alt={`${brand.name} logo`}
                                     width={140}
                                     height={70}
-                                    className="object-contain h-14 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                                    className="object-contain h-10 md:h-14 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                                 />
                             </div>
                         ))}

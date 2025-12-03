@@ -60,6 +60,10 @@ export const TestimonialSection = () => {
     const panelsRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        // Check if mobile
+        const isMobile = window.matchMedia("(max-width: 1024px)").matches;
+        if (isMobile) return;
+
         const container = containerRef.current;
         const panels = gsap.utils.toArray(".testimonial-panel") as HTMLElement[];
 
@@ -104,9 +108,9 @@ export const TestimonialSection = () => {
     return (
         <section
             ref={containerRef}
-            className="relative h-screen flex flex-col bg-gray-50 overflow-x-hidden overflow-y-hidden"
+            className="relative lg:h-screen flex flex-col bg-gray-50 overflow-x-hidden"
         >
-            {/* Header - Fixed at top */}
+            {/* Header - Fixed at top on desktop, normal flow on mobile */}
             <div className="flex-none max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
                 <div className="text-center">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#5ab8b4]/10 rounded-full mb-6 border border-[#5ab8b4]/20">
@@ -120,20 +124,20 @@ export const TestimonialSection = () => {
                 </div>
             </div>
 
-            {/* Horizontal Scroll Container */}
+            {/* Container */}
             <div
                 ref={panelsRef}
-                className="flex-1 flex w-[400vw]"
+                className="flex-1 flex flex-col lg:flex-row lg:w-[400vw] w-full"
             >
                 {testimonials.map((testimonial, index) => (
                     <div
                         key={index}
-                        className="testimonial-panel w-screen h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 pb-24"
+                        className="testimonial-panel w-full lg:w-screen h-auto lg:h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 pb-12 lg:pb-24"
                     >
                         <div className="max-w-5xl w-full">
-                            <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 h-[450px]">
+                            <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 h-auto lg:h-[450px]">
                                 {/* Left: Large Quote Card */}
-                                <div className="lg:col-span-3 bg-[#000000] rounded-[32px] p-8 flex flex-col justify-center relative overflow-hidden">
+                                <div className="lg:col-span-3 bg-[#000000] rounded-[32px] p-8 flex flex-col justify-center relative overflow-hidden min-h-[300px]">
                                     <div className="absolute top-8 left-8 text-white/10">
                                         <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor">
                                             <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 7.55228 14.017 7V3H19.017C20.6739 3 22.017 4.34315 22.017 6V15C22.017 16.6569 20.6739 18 19.017 18H16.017V21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 7.55228 5.0166 7V3H10.0166C11.6735 3 13.0166 4.34315 13.0166 6V15C13.0166 16.6569 11.6735 18 10.0166 18H7.0166V21H5.0166Z" />
@@ -149,9 +153,9 @@ export const TestimonialSection = () => {
                                 {/* Right Column */}
                                 <div className="lg:col-span-2 flex flex-col gap-4">
                                     {/* Top Row */}
-                                    <div className="grid grid-cols-2 gap-4 h-1/2">
+                                    <div className="grid grid-cols-2 gap-4 h-auto lg:h-1/2">
                                         {/* Photo */}
-                                        <div className="relative rounded-[32px] overflow-hidden bg-gray-200">
+                                        <div className="relative rounded-[32px] overflow-hidden bg-gray-200 h-[150px] lg:h-auto">
                                             <Image
                                                 src={testimonial.image}
                                                 alt={testimonial.author}
@@ -161,7 +165,7 @@ export const TestimonialSection = () => {
                                             />
                                         </div>
                                         {/* Logo */}
-                                        <div className="bg-white rounded-[32px] flex items-center justify-center p-6 border border-gray-100">
+                                        <div className="bg-white rounded-[32px] flex items-center justify-center p-6 border border-gray-100 h-[150px] lg:h-auto">
                                             <div className="relative w-full h-full">
                                                 <Image
                                                     src={testimonial.logo}
@@ -175,7 +179,7 @@ export const TestimonialSection = () => {
                                     </div>
 
                                     {/* Bottom Row: Info */}
-                                    <div className="h-1/2 bg-[#000000] rounded-[32px] flex flex-col justify-center items-center p-6 text-center">
+                                    <div className="h-auto lg:h-1/2 bg-[#000000] rounded-[32px] flex flex-col justify-center items-center p-6 text-center min-h-[120px]">
                                         <h3 className="text-2xl font-bold text-white mb-1 font-[family-name:var(--font-plus-jakarta-sans)]">
                                             {testimonial.author}
                                         </h3>
@@ -190,8 +194,8 @@ export const TestimonialSection = () => {
                 ))}
             </div>
 
-            {/* Scroll Indicator */}
-            <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex gap-3 z-10">
+            {/* Scroll Indicator - Hidden on mobile */}
+            <div className="hidden lg:flex absolute bottom-12 left-1/2 transform -translate-x-1/2 gap-3 z-10">
                 {testimonials.map((_, index) => (
                     <div
                         key={index}

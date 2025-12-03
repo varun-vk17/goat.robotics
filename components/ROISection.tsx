@@ -84,20 +84,20 @@ export const ROISection = () => {
             </div>
 
             {/* Bar Chart */}
-            <div className="flex items-end justify-center gap-16 h-80 pt-8 border-b border-white/10 pb-4">
-              <div className="w-32 flex flex-col items-center gap-3 group">
+            <div className="flex items-end justify-center gap-4 md:gap-16 h-80 pt-8 border-b border-white/10 pb-4">
+              <div className="w-24 md:w-32 flex flex-col items-center gap-3 group">
                 <div className="text-lg font-bold text-[#5ab8b4] opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">8-12 mo</div>
                 <div className="w-full bg-[#5ab8b4] h-32 rounded-t-2xl relative shadow-[0_0_20px_rgba(90,184,180,0.3)] group-hover:shadow-[0_0_30px_rgba(90,184,180,0.5)] transition-shadow">
                   <div className="absolute bottom-4 w-full text-center text-sm font-bold text-black/70">Goat</div>
                 </div>
-                <p className="text-base font-bold text-white font-[family-name:var(--font-plus-jakarta-sans)]">Goat Robotics</p>
+                <p className="text-sm md:text-base font-bold text-white font-[family-name:var(--font-plus-jakarta-sans)] text-center">Goat Robotics</p>
               </div>
-              <div className="w-32 flex flex-col items-center gap-3 group">
+              <div className="w-24 md:w-32 flex flex-col items-center gap-3 group">
                 <div className="text-lg font-bold text-gray-400 opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">24-36 mo</div>
                 <div className="w-full bg-gray-700 h-68 rounded-t-2xl relative opacity-80 group-hover:opacity-100 transition-opacity">
                   <div className="absolute bottom-4 w-full text-center text-sm font-bold text-white/50">Others</div>
                 </div>
-                <p className="text-base font-medium text-gray-400 font-[family-name:var(--font-plus-jakarta-sans)]">Global Brands</p>
+                <p className="text-sm md:text-base font-medium text-gray-400 font-[family-name:var(--font-plus-jakarta-sans)] text-center">Global Brands</p>
               </div>
             </div>
             <p className="text-center text-xs text-gray-500 mt-6 uppercase tracking-widest font-semibold font-[family-name:var(--font-plus-jakarta-sans)]">Payback Period (Lower is Better)</p>
