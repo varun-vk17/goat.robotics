@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { ArrowLeft, ArrowRight, Calculator, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Toast } from "@/components/ui/Toast";
 
 interface ROIData {
     // Step 1: Current Operations
@@ -126,6 +127,20 @@ export default function ROICalculatorPage() {
         }
     };
 
+    const [toast, setToast] = useState<{ message: string; type: "success" | "error"; isVisible: boolean }>({
+        message: "",
+        type: "success",
+        isVisible: false
+    });
+
+    const showToast = (message: string, type: "success" | "error") => {
+        setToast({ message, type, isVisible: true });
+    };
+
+    const hideToast = () => {
+        setToast(prev => ({ ...prev, isVisible: false }));
+    };
+
     const handleSubmit = async () => {
         setIsSubmitting(true);
 
@@ -145,11 +160,11 @@ export default function ROICalculatorPage() {
                 setResults(calculatedResults);
                 setShowResults(true);
             } else {
-                alert('Failed to submit. Please try again.');
+                showToast('Failed to submit. Please try again.', 'error');
             }
         } catch (error) {
             console.error('Error submitting form:', error);
-            alert('An error occurred. Please try again.');
+            showToast('An error occurred. Please try again.', 'error');
         } finally {
             setIsSubmitting(false);
         }
@@ -263,6 +278,12 @@ export default function ROICalculatorPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4">
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                isVisible={toast.isVisible}
+                onClose={hideToast}
+            />
             <div className="max-w-3xl mx-auto">
                 {/* Header */}
                 <div className="text-center mb-8">
@@ -552,8 +573,8 @@ export default function ROICalculatorPage() {
                             onClick={handleBack}
                             disabled={currentStep === 1}
                             className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 font-[family-name:var(--font-plus-jakarta-sans)] ${currentStep === 1
-                                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                 }`}
                         >
                             <ArrowLeft className="w-4 h-4" />

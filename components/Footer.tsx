@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { Mail, Phone, MapPin, Send, Linkedin, Twitter, Facebook } from "lucide-react";
 import Image from "next/image";
 
+import { Toast } from "@/components/ui/Toast";
+
 export const Footer = () => {
     const [formData, setFormData] = useState({
         name: "",
@@ -13,10 +15,47 @@ export const Footer = () => {
         message: ""
     });
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [toast, setToast] = useState<{ message: string; type: "success" | "error"; isVisible: boolean }>({
+        message: "",
+        type: "success",
+        isVisible: false
+    });
+
+    const showToast = (message: string, type: "success" | "error") => {
+        setToast({ message, type, isVisible: true });
+    };
+
+    const hideToast = () => {
+        setToast(prev => ({ ...prev, isVisible: false }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission
-        console.log("Form submitted:", formData);
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                showToast('Message sent successfully!', 'success');
+                setFormData({
+                    name: "",
+                    email: "",
+                    phone: "",
+                    company: "",
+                    message: ""
+                });
+            } else {
+                showToast('Failed to send message. Please try again.', 'error');
+            }
+        } catch (error) {
+            console.error('Error sending message:', error);
+            showToast('An error occurred. Please try again.', 'error');
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -28,6 +67,12 @@ export const Footer = () => {
 
     return (
         <footer className="relative bg-black text-white overflow-hidden">
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                isVisible={toast.isVisible}
+                onClose={hideToast}
+            />
             {/* Background pattern */}
             <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:40px_40px]"></div>
 

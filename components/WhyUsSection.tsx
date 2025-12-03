@@ -37,7 +37,7 @@ export const WhyUsSection = () => {
         {
             title: "Seamless Integration",
             description: "Integrates with your existing ERP, WMS, and production systems in days, not months. Our open API architecture ensures your robots talk to your software ecosystem perfectly.",
-            image: "/brands/ac5.jpeg",
+            image: "/brands/ac prevo5.jpeg",
             category: "Technology"
         }
     ];

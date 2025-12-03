@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Poppins, Titillium_Web, Inter } from "next/font/google";
 import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -41,6 +42,7 @@ export default function RootLayout({
         className={`${plusJakartaSans.variable} ${poppins.variable} ${titilliumWeb.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
+        <SmoothScroll />
         {children}
       </body>
     </html>

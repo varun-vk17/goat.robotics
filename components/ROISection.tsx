@@ -2,6 +2,8 @@
 
 import React from "react";
 import { ArrowRight, TrendingUp } from "lucide-react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export const ROISection = () => {
   return (
@@ -13,7 +15,12 @@ export const ROISection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left: Content */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full mb-6 border border-white/10 backdrop-blur-sm">
               <TrendingUp className="w-4 h-4 text-[#5ab8b4]" />
               <span className="text-[#5ab8b4] font-bold tracking-wide uppercase text-xs font-[family-name:var(--font-plus-jakarta-sans)]">
@@ -51,14 +58,22 @@ export const ROISection = () => {
               </div>
             </div>
 
-            <button className="group bg-[#5ab8b4] hover:bg-[#4a9fa0] text-white font-bold py-4 px-8 rounded-full inline-flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(90,184,180,0.3)] hover:shadow-[0_0_30px_rgba(90,184,180,0.5)] font-[family-name:var(--font-plus-jakarta-sans)]">
-              Calculate Your ROI
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
+            <Link href="/roi-calculator">
+              <button className="group bg-[#5ab8b4] hover:bg-[#4a9fa0] text-white font-bold py-4 px-8 rounded-full inline-flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(90,184,180,0.3)] hover:shadow-[0_0_30px_rgba(90,184,180,0.5)] font-[family-name:var(--font-plus-jakarta-sans)]">
+                Calculate Your ROI
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </Link>
+          </motion.div>
 
           {/* Right: Chart */}
-          <div className="bg-gradient-to-br from-white/10 to-white/5 p-10 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-white/10 to-white/5 p-10 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl"
+          >
             <div className="text-center mb-10">
               <p className="text-2xl font-bold mb-4 font-[family-name:var(--font-plus-jakarta-sans)]">
                 Your robot pays for itself in <br /><span className="text-[#5ab8b4] text-4xl">8–12 months</span>
@@ -86,7 +101,7 @@ export const ROISection = () => {
               </div>
             </div>
             <p className="text-center text-xs text-gray-500 mt-6 uppercase tracking-widest font-semibold font-[family-name:var(--font-plus-jakarta-sans)]">Payback Period (Lower is Better)</p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
