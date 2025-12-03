@@ -104,7 +104,7 @@ export const TestimonialSection = () => {
     return (
         <section
             ref={containerRef}
-            className="relative h-screen flex flex-col bg-gray-50 overflow-hidden mb-32"
+            className="relative h-screen flex flex-col bg-gray-50 overflow-x-hidden overflow-y-hidden"
         >
             {/* Header - Fixed at top */}
             <div className="flex-none max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">

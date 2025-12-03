@@ -94,7 +94,7 @@ export const ROISection = () => {
               </div>
               <div className="w-32 flex flex-col items-center gap-3 group">
                 <div className="text-lg font-bold text-gray-400 opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">24-36 mo</div>
-                <div className="w-full bg-gray-700 h-72 rounded-t-2xl relative opacity-80 group-hover:opacity-100 transition-opacity">
+                <div className="w-full bg-gray-700 h-68 rounded-t-2xl relative opacity-80 group-hover:opacity-100 transition-opacity">
                   <div className="absolute bottom-4 w-full text-center text-sm font-bold text-white/50">Others</div>
                 </div>
                 <p className="text-base font-medium text-gray-400 font-[family-name:var(--font-plus-jakarta-sans)]">Global Brands</p>
